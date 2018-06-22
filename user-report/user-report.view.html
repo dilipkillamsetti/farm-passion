@@ -1,0 +1,264 @@
+
+            <div class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                            <i class="icon-reorder shaded"></i></a>
+
+                        <a class="brand" style="padding: 12px;" href="index.html"> <img src="./images/Logo.png" alt="" style="height: 80px;margin-left: 85%;"></a>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <!--   <ul class="nav nav-icons">
+<li class="active"><a><i class="icon-envelope"></i></a></li>
+<li><a><i class="icon-eye-open"></i></a></li>
+<li><a><i class="icon-bar-chart"></i></a></li>
+</ul>-->
+                            <!--    <form class="navbar-search pull-left input-append" action="#">
+<input type="text" class="span3">
+<button class="btn" type="button">
+<i class="icon-search"></i>
+</button>
+</form>-->
+                            <ul class="nav pull-right">
+                                <!--     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Dropdown
+<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a>Item No. 1</a></li>
+<li><a>Don't Click</a></li>
+<li class="divider"></li>
+<li class="nav-header">Example Header</li>
+<li><a>A Separated link</a></li>
+</ul>
+</li>-->
+                                <!--  <li><a>Support </a></li>-->
+                                <li class="nav-user dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><br>
+                                    <img src="./images/user.png" class="nav-avatar" />
+                                    <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Your Profile</a></li>
+                                        <li><a>Edit Profile</a></li>
+                                        <li><a>Account Settings</a></li>
+                                        <li class="divider"></li>
+                                        <li><a ui-sref="login">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.nav-collapse -->
+                    </div>
+                </div>
+                <!-- /navbar-inner -->
+            </div>
+            <!-- /navbar -->
+            <div class="wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="span3">
+                            <div class="sidebar">
+                                <ul class="widget widget-menu unstyled">
+                                    <li class="active"><a href="index.html"><i class="menu-icon icon-dashboard"></i>Dashboard
+                                        </a></li>
+                                    <li><a><i class="menu-icon icon-bullhorn"></i>News Feed </a>
+                                    </li>
+                                    <li><a><i class="menu-icon icon-inbox"></i>Inbox <b class="label green pull-right">
+                                        11</b> </a></li>
+                                    <li><a><i class="menu-icon icon-tasks"></i>Tasks <b class="label orange pull-right">
+                                        19</b> </a></li>
+                                </ul>
+                                <!--/.widget-nav-->
+
+
+                                <ul class="widget widget-menu unstyled">
+                                    <li><a><i class="menu-icon icon-bold"></i> Buttons </a></li>
+                                    <li><a><i class="menu-icon icon-book"></i>Typography </a></li>
+                                    <li><a><i class="menu-icon icon-paste"></i>Forms </a></li>
+                                    <li><a><i class="menu-icon icon-table"></i>Tables </a></li>
+                                    <li><a><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
+                                </ul>
+                                <!--/.widget-nav-->
+                                <ul class="widget widget-menu unstyled">
+                                    <li><a class="collapsed" data-toggle="collapse" href="togglePages"><i class="menu-icon icon-cog">
+                                        </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                        </i>More Pages </a>
+                                        <ul id="togglePages" class="collapse unstyled">
+                                            <li><a><i class="icon-inbox"></i>Login </a></li>
+                                            <li><a><i class="icon-inbox"></i>Profile </a></li>
+                                            <li><a><i class="icon-inbox"></i>All Users </a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a ui-sref="login"><i class="menu-icon icon-signout"></i>Logout </a></li>
+                                </ul>
+                            </div>
+                            <!--/.sidebar-->
+                        </div>
+
+                        <div class="span9">
+                            <div class="content">
+
+                                <div class="table-title">
+                                    <h3 style="text-align: -webkit-center;font-size:25px;">User Report</h3>
+                                </div>
+                                <div class="table-responsive">
+                                <table class="table-fill">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left">#</th>
+                                            <th class="text-left"><a ng-click="orderByField='id'; reverseSort = !reverseSort">Id <span ng-show="orderByField == 'id'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></a></th>
+                                            <th class="text-left"><a ng-click="orderByField='user_id'; reverseSort = !reverseSort">UId <span ng-show="orderByField == 'user_id'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></a></th>
+                                            <th class="text-left"><a ng-click="orderByField='cycle'; reverseSort = !reverseSort">Cycle <span ng-show="orderByField == 'cycle'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></a></th>
+                                            <th class="text-left"><a ng-click="orderByField='crop'; reverseSort = !reverseSort">Crop <span ng-show="orderByField == 'crop'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></a></th>
+                                            <th class="text-left"><a ng-click="orderByField='cap_at_beg'; reverseSort = !reverseSort">Capital At Start <span ng-show="orderByField == 'cap_at_beg'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></a></th>
+                                            <th class="text-left"><a ng-click="orderByField='cap_at_end'; reverseSort = !reverseSort">Capital At End <span ng-show="orderByField == 'cap_at_end'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></a></th>
+                                            <th class="text-left"><a ng-click="orderByField='level_at_beg'; reverseSort = !reverseSort">Level At Start <span ng-show="orderByField == 'level_at_beg'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></a></th>
+                                            <th class="text-left"><a ng-click="orderByField='assessment_score'; reverseSort = !reverseSort">Total Yield (in Quintals) <span ng-show="orderByField == 'assessment_score'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-hover">
+                                        <tr ng-repeat="capital in capitals">
+                                            <th scope="row">{{$index+1}}</th>
+                                            <td class="text-left">{{capital.id}}</td>
+                                            <td class="text-left">{{capital.user_id}}</td>
+                                            <td class="text-left">{{capital.cycle}}</td>
+                                            <td class="text-left">{{capital.crop}}</td>
+                                            <td class="text-left">{{capital.cap_at_beg}}</td>
+                                            <td class="text-left">{{capital.cap_at_end}}</td>
+                                            <td class="text-left">{{capital.level_at_beg}}</td>
+                                            <td class="text-left">{{capital.assessment_score}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    
+                         </div>
+                </div>
+
+            </div>
+            <!--/.wrapper-->
+            <div class="footer">
+                <div class="container">
+                    <!--   <b class="copyright">&copy;  </b>-->
+                </div>
+            </div>
+
+
+
+            <style>
+
+                .table-fill {
+                    background: white;
+                    border-radius:3px;
+                    border-collapse: collapse;
+                    height: 320px;
+                    margin: auto;
+                    max-width: 800px;
+                    padding:5px;
+                    width: 100%;
+                    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                    animation: float 5s infinite;
+                }
+
+                th {
+                    color:#D5DDE5;;
+                    background:#1b1e24;
+                    border-bottom:4px solid #9ea7af;
+                    border-right: 1px solid #343a45;
+                    font-size:15px;
+                    font-weight: 100;
+                    padding:24px;
+                    text-align:left;
+                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+                    vertical-align:middle;
+                }
+
+                th:first-child {
+                    border-top-left-radius:3px;
+                }
+
+                th:last-child {
+                    border-top-right-radius:3px;
+                    border-right:none;
+                }
+
+                tr {
+                    border-top: 1px solid #C1C3D1;
+                    border-bottom-: 1px solid #C1C3D1;
+                    color:#666B85;
+                    font-size:16px;
+                    font-weight:normal;
+                    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+                }
+
+                tr:hover td {
+                    background:#4E5066;
+                    color:#FFFFFF;
+                    border-top: 1px solid #22262e;
+                    border-bottom: 1px solid #22262e;
+                }
+
+                tr:first-child {
+                    border-top:none;
+                }
+
+                tr:last-child {
+                    border-bottom:none;
+                }
+
+                tr:nth-child(odd) td {
+                    background:#EBEBEB;
+                }
+
+                tr:nth-child(odd):hover td {
+                    background:#4E5066;
+                }
+
+                tr:last-child td:first-child {
+                    border-bottom-left-radius:3px;
+                }
+
+                tr:last-child td:last-child {
+                    border-bottom-right-radius:3px;
+                }
+
+                td {
+                    background:#FFFFFF;
+                    padding:20px;
+                    text-align:left;
+                    vertical-align:middle;
+                    font-weight:300;
+                    font-size:15px;
+                    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                    border-right: 1px solid #C1C3D1;
+                }
+
+                td:last-child {
+                    border-right: 0px;
+                }
+
+                th.text-left {
+                    text-align: left;
+                }
+
+                th.text-center {
+                    text-align: center;
+                }
+
+                th.text-right {
+                    text-align: right;
+                }
+
+                td.text-left {
+                    text-align: left;
+                }
+
+                td.text-center {
+                    text-align: center;
+                }
+
+                td.text-right {
+                    text-align: right;
+                }
+
+            </style>
+

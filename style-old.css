@@ -1,0 +1,40 @@
+.modal-body{
+
+	 overflow-y: auto;
+}  
+
+.margin-top-5{
+	margin-top: 5%;
+}
+
+/*.thead-default{
+
+	background-color: #DCDCDC;
+}
+*/
+.margin-top-10{
+
+	margin-top: 10%;
+}
+
+.login-background{
+	background-image: url("img/login.jpg");
+}
+.jumbotron {
+    padding: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: transparent;
+}
+.has-error .help-block{
+    color: white;
+}
+
+.text-left a{
+	color:#333;
+}
+
+
+.margin-top-2{
+	margin-top: 2%;
+}

@@ -1,0 +1,43 @@
+<div id="myModal">
+        <div class="modal-header">
+            <h3 class="modal-title">User Report For User {{selectedUserID}}</h3>
+        </div>
+        <div class="modal-body">
+
+        <div class="table-responsive"> 
+            <table class="table-fill">
+                <thead>
+                    <tr>
+                       <!--  <th>#</th> -->
+                        <th class="text-left"><a ng-click="orderByField1='id'; reverseSort1 = !reverseSort1">Id <span ng-show="orderByField1 == 'id'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='user_id'; reverseSort1 = !reverseSort1">UId <span ng-show="orderByField1 == 'user_id'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='cycle'; reverseSort1 = !reverseSort1">Cycle <span ng-show="orderByField1 == 'cycle'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='crop'; reverseSort1 = !reverseSort1">Crop <span ng-show="orderByField1 == 'crop'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='cap_at_beg'; reverseSort1 = !reverseSort1">Capital At Start <span ng-show="orderByField1 == 'cap_at_beg'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='cap_at_end'; reverseSort1 = !reverseSort1">Capital At End <span ng-show="orderByField1 == 'cap_at_end'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='level_at_beg'; reverseSort1 = !reverseSort1">Level At Start <span ng-show="orderByField1 == 'level_at_beg'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='assessment_score'; reverseSort1 = !reverseSort1">Total Yield (in Quintals) <span ng-show="orderByField1 == 'assessment_score'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover">
+                    <tr ng-repeat="capital in selectedCapitals | orderBy:orderByField1:reverseSort1 | slice:(currentPage1-1)*itemsPerPage1:(currentPage1)*itemsPerPage1 | limitTo:itemsPerPage1" pagination-id="abc">
+                        <!-- <th scope="row">{{$index+1}}</th> -->
+                        <td>{{capital.id}}</td>
+                        <td>{{capital.user_id}}</td>
+                        <td>{{capital.cycle}}</td>
+                        <td>{{capital.crop}}</td>
+                        <td>{{capital.cap_at_beg}}</td>
+                        <td>{{capital.cap_at_end}}</td>
+                        <td>{{capital.level_at_beg}}</td>
+                        <td>{{capital.assessment_score}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <pagination total-items="totalItems1" ng-model="currentPage1" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages1" items-per-page="itemsPerPage1"></pagination>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <!-- <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button> -->
+        </div>
+</div>

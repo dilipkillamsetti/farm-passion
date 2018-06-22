@@ -1,0 +1,144 @@
+
+            <div class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                            <i class="icon-reorder shaded"></i></a>
+
+                        <a class="brand" style="padding: 12px;" href="index.html"> <img src="./images/Logo.png" alt="" style="height: 80px;margin-left: 85%;"></a>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <!--   <ul class="nav nav-icons">
+<li class="active"><a><i class="icon-envelope"></i></a></li>
+<li><a><i class="icon-eye-open"></i></a></li>
+<li><a><i class="icon-bar-chart"></i></a></li>
+</ul>-->
+                            <!--    <form class="navbar-search pull-left input-append" action="#">
+<input type="text" class="span3">
+<button class="btn" type="button">
+<i class="icon-search"></i>
+</button>
+</form>-->
+                            <ul class="nav pull-right">
+                                <!--     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Dropdown
+<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a>Item No. 1</a></li>
+<li><a>Don't Click</a></li>
+<li class="divider"></li>
+<li class="nav-header">Example Header</li>
+<li><a>A Separated link</a></li>
+</ul>
+</li>-->
+                                <!--  <li><a>Support </a></li>-->
+                                <li class="nav-user dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><br>
+                                    <img src="./images/user.png" class="nav-avatar" />
+                                    <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Your Profile</a></li>
+                                        <li><a>Edit Profile</a></li>
+                                        <li><a>Account Settings</a></li>
+                                        <li class="divider"></li>
+                                        <li><a ui-sref="login">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.nav-collapse -->
+                    </div>
+                </div>
+                <!-- /navbar-inner -->
+            </div>
+            <!-- /navbar -->
+            <div class="wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="span3">
+                            <div class="sidebar">
+                                <ul class="widget widget-menu unstyled">
+                                    <li class="active"><a href="index.html"><i class="menu-icon icon-dashboard"></i>Dashboard
+                                        </a></li>
+                                    <li><a ng-click="open()"><i class="icon-group"></i>User Report</a></li>
+                                    <li><a ng-click=""><i class="icon-user"></i>Crop Wise Report</a></li>
+                                    <li><a ng-click=""><i class="icon-money"></i>Leaderboard</a></li>
+                                    <li><a ng-click=""><i class="icon-random"></i>Last Activity</a></li>
+                                    <li><a ng-click=""><i class="icon-user"></i>Equipment Report</a></li>
+                                    <li><a ng-click=""><i class="icon-money"></i>Region Wise Report</a></li>
+								</ul>	
+                                    <!-- <li><a><i class="menu-icon icon-inbox"></i>Inbox <b class="label green pull-right">
+                                        11</b> </a></li>
+                                    <li><a><i class="menu-icon icon-tasks"></i>Tasks <b class="label orange pull-right">
+                                        19</b> </a></li> -->
+                                
+                                <!--/.widget-nav-->
+
+
+                               <!--  <ul class="widget widget-menu unstyled">
+                                    <li><a><i class="menu-icon icon-bold"></i> Buttons </a></li>
+                                    <li><a><i class="menu-icon icon-book"></i>Typography </a></li>
+                                    <li><a><i class="menu-icon icon-paste"></i>Forms </a></li>
+                                    <li><a><i class="menu-icon icon-table"></i>Tables </a></li>
+                                    <li><a><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
+                                </ul> -->
+                                <!--/.widget-nav-->
+                                <!-- <ul class="widget widget-menu unstyled">
+                                    <li><a class="collapsed" data-toggle="collapse" data-target="#togglePages" ><i class="menu-icon icon-cog">
+                                        </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                        </i>More Pages </a>
+                                        <ul id="togglePages" class="collapse unstyled">
+                                            <li><a><i class="icon-inbox"></i>Login </a></li>
+                                            <li><a><i class="icon-inbox"></i>Profile </a></li>
+                                            <li><a><i class="icon-inbox"></i>All Users </a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a ui-sref="login"><i class="menu-icon icon-signout"></i>Logout </a></li>
+                                </ul> -->
+                            </div>
+                            <!--/.sidebar-->
+                        </div>
+                                                <!--/.span3-->
+						
+                          <div class="span9" >
+                           <div class="content">
+                               <div class="btn-controls">
+                                    <div class="btn-box-row row-fluid">
+                                        <a ng-click="open()" class="btn-box big span4"><i class="icon-group"></i>
+                                            <p class="text-muted" style="font-size: 15px;margin: 15px 0 20px;">
+                                                User Report</p>
+                                        </a><a class="btn-box big span4"><i class="icon-user"></i>
+                                        <p class="text-muted" style="font-size: 15px;margin: 15px 0 20px;">
+                                            Crop Wise Report</p>
+                                        </a><a class="btn-box big span4"><i class="icon-money"></i>
+                                        <p class="text-muted" style="font-size: 15px;margin: 15px 0 20px;">
+                                            Leaderboard</p>
+                                        </a>
+                                    </div>
+                                    <div class="btn-box-row row-fluid">
+                                        <a ui-sref="lastactivity" class="btn-box big span4"><i class=" icon-random"></i>
+                                            <p class="text-muted" style="font-size: 15px;margin: 15px 0 20px;">
+                                                Last Activity </p>
+                                        </a><a class="btn-box big span4"><i class="icon-user"></i>
+                                        <p class="text-muted" style="font-size: 15px;margin: 15px 0 20px;">
+                                            Equipment Report</p>
+                                        </a><a class="btn-box big span4"><i class="icon-money"></i>
+                                        <p class="text-muted" style="font-size: 15px;margin: 15px 0 20px;">
+                                            Region Wise Report </p>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                         </div>
+                </div>
+
+            </div>
+            <!--/.wrapper-->
+            <div class="footer">
+                <div class="container">
+                    <!--   <b class="copyright">&copy;  </b>-->
+                </div>
+            </div>
+
+
+                   

@@ -1,0 +1,48 @@
+<style>
+   .modal-open {
+    overflow: auto;
+}
+</style>
+ <div  class="modal"   >
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title"></h3>
+        </div>
+        <div class="modal-body" id="modal-body" >
+             <div class="table-responsive">
+                        <table id="basic-table5" class="table" infinite-scroll='more()'  infinite-scroll-container="'#basic-table5'" style="max-width: 850px;overflow: scroll;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">User</th>
+                                    <th class="text-center">Type of Equipment</th>
+                                    <th class="text-center">Buy/Rent</th>
+                                    <th class="text-center">Crop</th>
+                                   
+
+                                    <!-- <th class="text-center">Assessment Score</th> -->
+                                </tr>
+                            </thead >
+                            <tbody  >
+                                <tr ng-repeat="capital in capitalr">
+                                    <td scope="row">{{$index+1}}</td>
+                                    <td class="text-center" style="cursor: pointer;" data-toggle="modal" data-target="#myModal1">{{capital.user_id}}</td>
+                                    <td class="text-center">{{capital.equipment}}</td>
+                                    <td class="text-center">{{capital.type}}</td>
+                                     <td class="text-center">{{capital.crop}}</td>
+                                </tr>
+                                <tr ng-show="empty">
+                                    <td class="text-center" colspan="4" >No Records Found!</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                       
+                    </div>
+            
+           
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok();">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="Cancel();">Cancel</button>
+        </div>
+        </div>

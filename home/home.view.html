@@ -1,0 +1,858 @@
+<style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    /* .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        padding: 12px 16px;
+        z-index: 1;
+    }
+     */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    .nav>li:hover {
+        background: transparent !important;
+    }
+
+
+
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        padding-top:0;
+        padding-bottom:0;
+        /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+        z-index: 1;
+    }
+
+    .dropdown-content li{
+        margin:0;
+    }
+    .row button:nth-child(1){
+        margin-left:10px;
+        margin-right:10px;
+        margin-bottom:15px;
+    }
+
+    .row button:nth-child(2){
+        margin-left:10px;
+        margin-bottom:15px;
+    }
+    .bottom{
+        text-align:center;
+        margin-top:10px;
+    }
+
+    #pagination{
+        text-align:center;
+    }
+    .dashbrd_class{
+        margin-top:50px ;
+    }
+
+    th a{
+        text-decoration:none;
+        color:white;
+    }
+    th a:hover{
+        color:white;
+    }
+
+</style>
+<div class="navbar navbar-fixed-top"  ng-init="dashboard()">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                <i class="icon-reorder shaded"></i></a>
+            <a class="brand" style="padding: 12px;" href="index.html"> <img src="./images/Logo.png" alt="" style="height: 80px;margin-left: 85%;"></a>
+            <div class="brand"> <img src="./images/heading.png" alt="" style="height:80px;margin-left:35%;"></div>
+            <!-- <p><center style="color: white;padding-top: 20px;">Game</center></p> -->
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+                <ul class="nav pull-right">
+                    <li class="nav-user dropdown">
+                        <br>
+                        <br>
+                        <img src="./images/user.png" class="nav-avatar dropdown" />
+                        <b class="caret"></b>
+                        <ul class="dropdown-menu dropdown-content">
+                            <li><a ui-sref="login">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /navbar-inner -->
+</div>
+<!-- /navbar -->
+    <div id="gamehead" class="wrapper" >    
+        <h3 ng-hide="table1||table2||table3||table4||table5||table6">
+            <center style="color: white;">Dashboard</center>
+        </h3>
+        <h3 ng-show="table1">
+            <center style="color: white;">User Report</center>
+        </h3>
+        <h3 ng-show="table2">
+            <center style="color: white;">Crop Wise Report</center>
+        </h3>
+        <h3 ng-show="table3">
+            <center style="color: white;">Leaderboard Report</center>
+        </h3>
+        <h3 ng-show="table4">
+            <center style="color: white;">Last Activity Report</center>
+        </h3>
+        <h3 ng-show="table5">
+            <center style="color: white;">Equipment Report</center>
+        </h3>
+        <h3 ng-show="table6">
+            <center style="color: white;">Region Wise Report</center>
+        </h3>
+    </div>
+    
+    <div class="container" style="background:url(img/backgroundImage.jpg);background-size:cover">
+        <div class="row" style="margin-left: 0.;margin-left: 0px;">
+            <div class="span3">
+                <div class="sidebar">
+                    <ul class="widget widget-menu unstyled">
+                        <li class="active"><a ng-click="dashboard()"><i class="menu-icon icon-dashboard"></i>
+                            Dashboard</a>
+                        </li>
+                        <li>
+                            <a ng-click="open(false, false, false, false,false,from1, to1,false,'')" ng-model="table1" ng-class="{'selectedMenu':table1}">
+                                <i class="menu-icon icon-group"></i>User Report
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="open(false, 'crop', false, false,false,from2, to2,false,'')" ng-model="table2" ng-class="{'selectedMenu':table2}">
+                                <i class="menu-icon icon-user"></i>Crop Wise Report
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="open(false, false, true, false,false,from3, to3,false,'')" ng-model="table3" ng-class="{'selectedMenu':table3}">
+                                <i class="menu-icon icon-money"></i>Leaderboard
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="open(false, false, false,'Activity',false,from4, to4,false,'')" ng-model="table4" ng-class="{'selectedMenu':table4}">
+                                <i class="menu-icon icon-random"></i>Last Activity
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="showEquipment(from5, to5,false,'')" ng-model="table5" ng-class="{'selectedMenu':table5}"><i class="menu-icon icon-user"></i>Equipment Report
+                            </a>
+                        </li>
+                        <!-- <li>
+                            <a ng-click="open(false, false, false,false,'region',from6, to6,false,'')" ng-class="{'selectedMenu':table6}">
+                                <i class="menu-icon icon-money"></i>Region Wise Report
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+                <!--/.sidebar-->
+            </div>
+            <!--/.span3-->
+            <div class="span9 dashbrd_class" ng-hide="table1||table2||table3||table4||table5||table6">
+                <div class="content tableContent">
+                    <div class="table-responsive">
+                        <div class="span4">
+                            <!-- 	<label><label> -->
+                            <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options">
+                            </canvas>
+                            <h4>
+                                <center>Number of Users per Level</center>
+                            </h4>
+                            <!-- <chart title="Line chart example" xData="lineChartXData" yData="lineChartYData" xName="Month" yName="Hit" subtitle="This is an example"></chart> -->
+                        </div>
+                        <div class="span4">
+                            <canvas id="line" class="chart chart-line" chart-data="data1" chart-labels="labels1"> chart-series="series"
+                            </canvas>
+                            <h4>
+                                <center>Number of Active Users</center>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- <th>
+                <a href="#" ng-click="orderByField='firstName'; reverseSort = !reverseSort">
+                     First Name <span ng-show="orderByField == 'firstName'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                </a>
+            </th> -->
+              
+            <div class="span9" ng-show="table1">
+                <div class="content tableContent" style="margin-top:40px;">
+                        <!-- <div class="select">
+                                <div style="float:right">
+                                    <label class="label1">From</label><input type="date" ng-model="from1" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('1')">
+                                    <label class="label1">To</label><input type="date" ng-model="to1" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('1')">
+                                </div> 
+                            </div>  -->
+
+                    <div class="table-responsive">
+                        <table class="table" style="max-width: 850px;" id="basic-table1">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <!-- <th class="text-center">
+                                        <a href="#" ng-click="orderByField='id' ; reverseSort = !reverseSort ">
+                                            Id <span ng-show="orderByField == 'id'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th> -->
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='user_id' ; reverseSort = !reverseSort ">
+                                            User Id<span ng-show="orderByField == 'user_id'"><span ng-show="!reverseSort"> <i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a> 
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='cycle' ; reverseSort = !reverseSort ">
+                                            Cycle<span ng-show="orderByField == 'cycle'"><span ng-show="!reverseSort"> <i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='crop' ; reverseSort = !reverseSort ">   
+                                            Crop<span ng-show="orderByField == 'crop'"><span ng-show="!reverseSort"> <i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='cap_at_beg' ; reverseSort = !reverseSort ">
+                                        Capital At Start(in Rs)<span ng-show="orderByField == 'cap_at_beg'"><span ng-show="!reverseSort"> <i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='cap_at_end' ; reverseSort = !reverseSort ">      
+                                        Capital At End(in Rs)<span ng-show="orderByField == 'cap_at_end'"><span ng-show="!reverseSort"> <i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='level_at_beg' ; reverseSort = !reverseSort ">      
+                                            Level At Start Of Cycle<span ng-show="orderByField == 'level_at_beg'"><span ng-show="!reverseSort"> <i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='assessment_score' ; reverseSort = !reverseSort ">      
+                                            Total Yield (in Quintals)<span ng-show="orderByField == 'assessment_score'"><span ng-show="!reverseSort"> <i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                         </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr ng-repeat="capital in items | orderBy:orderByField:reverseSort" ng-show="!empty">
+                                    <td scope="row">{{(pager.currentPage -1) * 10 + $index + 1}}</td>
+                                    <!-- <td class="text-center">{{capital.id}}</td> -->
+                                    <td class="text-center" >{{capital.user_id}}</td>
+                                    <td class="text-center">{{capital.cycle}}</td>
+                                    <td class="text-center">{{capital.crop}}</td>
+                                    <td class="text-center">{{capital.cap_at_beg}}</td>
+                                    <td class="text-center">{{capital.cap_at_end}}</td>
+                                    <td class="text-center">{{capital.level_at_beg}}</td>
+                                    <td class="text-center">{{capital.assessment_score}}</td>
+                                </tr>
+                                <tr ng-show="empty">
+                                    <td class="text-center" colspan="9">No Records Found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- pager -->
+                        <ul ng-if="pager.pages.length" class="pagination"  id="pagination">
+                            <li ng-class="{disabled:pager.currentPage === 1}">
+                                <a ng-click="setPage(1)">First</a>
+                            </li>
+                            <li ng-class="{disabled:pager.currentPage === 1}">
+                                <a ng-click="setPage(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+                                <a ng-click="setPage(page)">{{page}}</a>
+                            </li>                
+                            <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                <a ng-click="setPage(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                <a ng-click="setPage(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
+                        <!-- <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" style="float: right;"></pagination> -->
+                    </div>
+                </div>
+                <div class="content bottom">
+                        <!-- <div class="row filter1">
+                            <label class="label1">From</label><input type="date" ng-model="from1" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('1')">
+                            <label class="label1">To</label><input type="date" ng-model="to1" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('1')">
+                        </div> -->
+                        <div class="row">
+                            <!-- <button class="btn btn-primary" type="button" value="pdf" ng-click="open(false, false, false, false,false,from1, to1,false,'1')">Download PDF</button> -->
+                            <button class="btn btn-primary" type="button" value="excel" ng-click="open(false, false, false, false,false,from1,to1,true,'')">Download Excel</button>
+                        </div>
+                    </div>
+            </div>
+            <div class="span9" ng-show="table2">
+                <div class="content tableContent">
+                        <div class="select">
+                                <label class="label1">Select Crop:</label>
+                                <select ng-model="cropSelected"  ng-change="open(false, 'crop', false, false)">
+                                    <option value="" selected>All</option>
+                                    <option value="rice">Rice</option>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="sugar">Sugarcane</option>
+                                </select>
+                                <!-- <span style="float:right">
+                                    <label class="label1">From</label><input type="date" ng-model="from2" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('2')">
+                                    <label class="label1">To</label><input type="date" ng-model="to2" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('2')">
+                                </span>  -->
+                            </div> 
+                    <div class="table-responsive">
+                        <table class="table" style="max-width: 850px;" id="basic-table2">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <!-- <th class="text-center">
+                                        <a href="#" ng-click="orderByField='user_id' ; reverseSort = !reverseSort ">      
+                                            UID<span ng-show="orderByField == 'user_id'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th> -->
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='user_id' ; reverseSort = !reverseSort ">      
+                                            User Id<span ng-show="orderByField == 'user_id'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='cap_at_beg' ; reverseSort = !reverseSort ">      
+                                            Capital(in Rs)<span ng-show="orderByField == 'cap_at_beg'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='cycle' ; reverseSort = !reverseSort ">      
+                                            Current Level<span ng-show="orderByField == 'cycle'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='created_at' ; reverseSort = !reverseSort ">      
+                                            Last Active<span ng-show="orderByField == 'created_at'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='assessment_score' ; reverseSort = !reverseSort ">      
+                                            Assessment Score<span ng-show="orderByField == 'assessment_score'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr ng-repeat="capital in items | orderBy:orderByField:reverseSort " ng-show="!empty">
+                                    <td scope="row">{{(pager.currentPage -1) * 10  + $index+1}}</td>
+                                    <!-- <td class="text-center">{{capital.user_id}}</td> -->
+                                    <td class="text-center">{{capital.user_id}}</td>
+                                    <td class="text-center">{{capital.cap_at_beg}}</td>
+                                    <td class="text-center">{{capital.cycle}}</td>
+                                    <td class="text-center">{{capital.created_at}}</td>
+                                    <td class="text-center">{{capital.assessment_score}}</td>
+                                </tr>
+                                <tr ng-show="empty">
+                                    <td class="text-center" colspan="7">No Records Found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                         <!-- pager -->
+                         <ul ng-if="pager.pages.length" class="pagination">
+                                <li ng-class="{disabled:pager.currentPage === 1}">
+                                    <a ng-click="setPage(1)">First</a>
+                                </li>
+                                <li ng-class="{disabled:pager.currentPage === 1}">
+                                    <a ng-click="setPage(pager.currentPage - 1)">Previous</a>
+                                </li>
+                                <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+                                    <a ng-click="setPage(page)">{{page}}</a>
+                                </li>                
+                                <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                    <a ng-click="setPage(pager.currentPage + 1)">Next</a>
+                                </li>
+                                <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                    <a ng-click="setPage(pager.totalPages)">Last</a>
+                                </li>
+                            </ul>
+                        <!-- <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" style="float: right;"></pagination> -->
+                    </div>
+                </div>
+                <div class="content bottom">
+                        <!-- <div class="row filter1">
+                            <label class="label1">From</label><input type="date" ng-model="from2" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('2')">
+                            <label class="label1">To</label><input type="date" ng-model="to2" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('2')">
+                        </div> -->
+                        <div class="row">
+                            <!-- <button class="btn btn-primary" type="button" value="pdf" ng-click="open(false, 'crop', false, false,false,from2, to2,false,'2')">Download PDF</button> -->
+                            <button class="btn btn-primary" type="button" value="excel" ng-click="open(false, 'crop', false, false,false,from2, to2,true,'')">Download Excel</button>
+                        </div>
+                </div>
+            </div>
+            <div class="span9" ng-show="table3">
+                <div class="content tableContent">
+                        <div class="select">
+                                <label class="label1">Select Crop:</label>
+                                <select ng-model="leaderboard_cropSelected"  ng-change="leaderboard_cropwise(leaderboard_cropSelected)">
+                                    <option value="all" >All</option>
+                                    <option value="rice">Rice</option>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="sugar">Sugarcane</option>
+                                </select>
+                                <!-- <span style="float:right">
+                                        <label class="label1">From</label><input type="date" ng-model="from3" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('3')">
+                                        <label class="label1">To</label><input type="date" ng-model="to3" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('3')">
+                                </span>  -->
+                        </div>
+                    <div class="table-responsive">
+                        <table class="table" style="max-width: 850px;" id="basic-table3">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='user_id' ; reverseSort = !reverseSort ">      
+                                            User Id<span ng-show="orderByField == 'user_id'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <!-- <th class="text-center">
+                                        <a href="#" ng-click="orderByField='user_id' ; reverseSort = !reverseSort ">      
+                                        User Id<span ng-show="orderByField == 'user_id'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th> -->
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='cap_at_end' ; reverseSort = !reverseSort ">      
+                                            Top 10 Score<span ng-show="orderByField == 'cap_at_end'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" >      
+                                            Region<span ng-hide = true><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='crop' ; reverseSort = !reverseSort ">      
+                                            Crop<span ng-show="orderByField == 'crop'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='assessment_score' ; reverseSort = !reverseSort ">          
+                                            Assessment Score<span ng-show="orderByField == 'assessment_score'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr ng-repeat="capital in items | orderBy:orderByField:reverseSort " ng-show="!empty">
+                                    <td scope="row">{{(pager.currentPage -1) * 10 + $index+1}}</td>
+                                    <td class="text-center">{{capital.user_id}} <i class="icon-trophy" style="font-size: 100%;color: #0ea22e;" ng-show="{{$index==0}}"></i></td>
+                                    <!-- <td class="text-center">{{capital.user_id}}</td> -->
+                                    <td class="text-center">{{capital.cap_at_end}}</td>
+                                    <td class="text-center">NA</td>
+                                    <td class="text-center">{{capital.crop}}</td>
+                                    <td class="text-center">{{capital.assessment_score}}</td>
+                                </tr>
+                                <tr ng-show="empty">
+                                    <td class="text-center" colspan="7">No Records Found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                         <!-- pager -->
+                         <ul ng-if="pager.pages.length" class="pagination">
+                                <li ng-class="{disabled:pager.currentPage === 1}">
+                                    <a ng-click="setPage(1)">First</a>
+                                </li>
+                                <li ng-class="{disabled:pager.currentPage === 1}">
+                                    <a ng-click="setPage(pager.currentPage - 1)">Previous</a>
+                                </li>
+                                <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+                                    <a ng-click="setPage(page)">{{page}}</a>
+                                </li>                
+                                <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                    <a ng-click="setPage(pager.currentPage + 1)">Next</a>
+                                </li>
+                                <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                    <a ng-click="setPage(pager.totalPages)">Last</a>
+                                </li>
+                            </ul>
+                        <!-- <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" style="float: right;"></pagination> -->
+                    </div>
+                </div>
+                <div class="content bottom">    
+                        <!-- <div class="row filter1">
+                            <label class="label1">From</label><input type="date" ng-model="from3" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('3')">
+                            <label class="label1">To</label><input type="date" ng-model="to3" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('3')">
+                        </div> -->
+                        <div class="row">
+                            <!-- <button class="btn btn-primary" value="pdf" ng-click="open(false, false, true, false,false,from3, to3,false,'3')">Download PDF</button> -->
+                            <button class="btn btn-primary" value="excel" ng-click="open(false, false, true, false,false,from3, to3,true,'')">Download Excel</button>
+                        </div>
+                    </div>
+            </div>
+            <div class="span9" ng-show="table4">
+                <div class="content tableContent">
+                    <div class="select">
+                        <label class="label1">Select Activity:</label>
+                        <select ng-model="actSelected" ng-change="open(false,false, false, 'Activity')">
+                            <option value="" selected>All</option>
+                            <option value="day">Last Day</option>
+                            <option value="week">Last Week</option>
+                            <option value="month">Last Month</option>
+                            <option value="tmonth">Last Three Months</option>
+                            <option value="smonth">Last Six Months</option>
+                        </select>
+                        <!-- <span style="float:right">
+                                <label class="label1">From</label><input type="date" ng-model="from4" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('4')">
+                                <label class="label1">To</label><input type="date" ng-model="to4" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('4')">
+                        </span>  -->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" style="max-width: 850px;" id="basic-table4">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='user_id' ; reverseSort = !reverseSort ">          
+                                            User Id<span ng-show="orderByField == 'user_id'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='cap_at_beg' ; reverseSort = !reverseSort ">      
+                                         Capital(in Rs)<span ng-show="orderByField == 'cap_at_beg'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='cycle' ; reverseSort = !reverseSort ">      
+                                        Current Level<span ng-show="orderByField == 'cycle'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>    
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='created_at' ; reverseSort = !reverseSort ">      
+                                        Last Active<span ng-show="orderByField == 'created_at'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='assessment_score' ; reverseSort = !reverseSort ">      
+                                         Assessment Score<span ng-show="orderByField == 'assessment_score'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr ng-repeat="capital in items | orderBy:orderByField:reverseSort " ng-show="!empty">
+                                    <td scope="row">{{$index+1}}</td>
+                                    <td class="text-center">{{capital.user_id}}</td>
+                                    <td class="text-center">{{capital.cap_at_beg}}</td>
+                                    <td class="text-center">{{capital.cycle}}</td>
+                                    <td class="text-center">{{capital.created_at}}</td>
+                                    <td class="text-center">{{capital.assessment_score}}</td>
+                                </tr>
+                                <tr ng-show="empty">
+                                    <td class="text-center" colspan="6">No Records Found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                         <!-- pager -->
+                         <ul ng-if="pager.pages.length" class="pagination">
+                                <li ng-class="{disabled:pager.currentPage === 1}">
+                                    <a ng-click="setPage(1)">First</a>
+                                </li>
+                                <li ng-class="{disabled:pager.currentPage === 1}">
+                                    <a ng-click="setPage(pager.currentPage - 1)">Previous</a>
+                                </li>
+                                <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+                                    <a ng-click="setPage(page)">{{page}}</a>
+                                </li>                
+                                <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                    <a ng-click="setPage(pager.currentPage + 1)">Next</a>
+                                </li>
+                                <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                    <a ng-click="setPage(pager.totalPages)">Last</a>
+                                </li>
+                            </ul>
+                        <!-- <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" style="float: right;"></pagination> -->
+                    </div>
+                </div>
+                <div class="content bottom">
+                        <!-- <div class="row filter1">
+                            <label class="label1">From</label><input type="date" ng-model="from4" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('4')">
+                            <label class="label1">To</label><input type="date" ng-model="to4" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('4')">
+                        </div> -->
+                        <div class="row">
+                            <!-- <button class="btn btn-primary" value="pdf" ng-click="open(false, false, false, 'Activity',false,from4, to4,false,'4')">Download PDF</button> -->
+                            <button class="btn btn-primary" value="excel" ng-click="open(false, false, false, 'Activity',false,from4, to4,true,'')">Download Excel</button>
+                        </div>
+                    </div>
+            </div>
+            <div class="span9" ng-show="table5">
+                <div class="content tableContent" style="margin-top:40px;">
+                        <!-- <div class="select">
+                                <span style="float:right">
+                                    <label class="label1">From</label><input type="date" ng-model="from5" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('5')">
+                                    <label class="label1">To</label><input type="date" ng-model="to5" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('5')">
+                                </span> 
+                        </div> -->
+                    <div class="table-responsive">
+                        <table class="table" style="max-width: 850px;" id="basic-table5">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">
+                                         <a href="#" ng-click="orderByField='user_id' ; reverseSort = !reverseSort ">     
+                                        User<span ng-show="orderByField == 'user_id'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='equipment' ; reverseSort = !reverseSort "> 
+                                        Type of Equipment<span ng-show="orderByField == 'equipment'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='type' ; reverseSort = !reverseSort "> 
+                                        Buy/Rent<span ng-show="orderByField == 'type'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="#" ng-click="orderByField='crop' ; reverseSort = !reverseSort "> 
+                                        Crop<span ng-show="orderByField == 'crop'"><span ng-show="!reverseSort"><i class="fa fa-arrow-up"></i></span><span ng-show="reverseSort"> <i class="fa fa-arrow-down"></i></span></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">Details</th>
+
+                                    <!-- <th class="text-center">Assessment Score</th> -->
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr ng-repeat="capital in items | orderBy:orderByField : reverseSort " ng-show="!empty">
+                                    <td scope="row">{{$index+1}}</td>
+                                    <td class="text-center" >{{capital.user_id}}</td>
+                                    <td class="text-center">{{capital.equipment}}</td>
+                                    <td class="text-center">{{capital.type}}</td>
+                                    <td class="text-center">{{capital.crop}}</td>
+                                    <td class="text-center" ng-click="Details(capital)">View</td>
+
+                                    <!-- <td class="text-center">{{capital.assessment_score}}</td> -->
+                                </tr>
+                                <tr ng-show="empty">
+                                    <td class="text-center" colspan="4">No Records Found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                         <!-- pager -->
+                         <ul ng-if="pager.pages.length" class="pagination">
+                                <li ng-class="{disabled:pager.currentPage === 1}">
+                                    <a ng-click="setPage(1)">First</a>
+                                </li>
+                                <li ng-class="{disabled:pager.currentPage === 1}">
+                                    <a ng-click="setPage(pager.currentPage - 1)">Previous</a>
+                                </li>
+                                <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+                                    <a ng-click="setPage(page)">{{page}}</a>
+                                </li>                
+                                <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                    <a ng-click="setPage(pager.currentPage + 1)">Next</a>
+                                </li>
+                                <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                                    <a ng-click="setPage(pager.totalPages)">Last</a>
+                                </li>
+                            </ul>
+                        <!-- <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" style="float: right;"></pagination> -->
+                    </div>
+                </div>
+                <div class="content bottom">
+                        <!-- <div class="row filter1">
+                            <label class="label1">From</label><input type="date" ng-model="from5" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('5')">
+                            <label class="label1">To</label><input type="date" ng-model="to5" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('5')">
+                        </div> -->
+                        <div class="row">
+                            <!-- <button class="btn btn-primary" value="pdf" ng-click="showEquipment(from5, to5,false,'5')">Download PDF</button> -->
+                            <button class="btn btn-primary" value="excel" ng-click="showEquipment(from5, to5,true,'')">Download Excel</button>
+                        </div>
+                </div>
+            </div>
+            <div class="span9" ng-show="table6">
+                <div class="content tableContent">
+                    <center>
+                        <h2>TBD</h2>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">User Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="content tableContent">
+                    <div class="table-responsive">
+                        <table class="table" style="max-width: 850px;" id="basic-table1">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">User Name</th>
+                                    <th class="text-center">Cycle</th>
+                                    <th class="text-center">Crop</th>
+                                    <th class="text-center">Capital At Start</th>
+                                    <th class="text-center">Capital At End</th>
+                                    <th class="text-center">Level At Start</th>
+                                    <th class="text-center">Total Yield (in Quintals)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr ng-repeat="capital in capitals | orderBy:orderByField:reverseSort | slice:(currentPage-1)*itemsPerPage:(currentPage)*itemsPerPage | limitTo:itemsPerPage" ng-show="!empty">
+                                    <td scope="row">{{$index+1}}</td>
+                                    <td class="text-center">{{capital.id}}</td>
+                                    <td class="text-center">{{capital.user_id}}</td>
+                                    <td class="text-center">{{capital.cycle}}</td>
+                                    <td class="text-center">{{capital.crop}}</td>
+                                    <td class="text-center">{{capital.cap_at_beg}}</td>
+                                    <td class="text-center">{{capital.cap_at_end}}</td>
+                                    <td class="text-center">{{capital.level_at_beg}}</td>
+                                    <td class="text-center">{{capital.assessment_score}}</td>
+                                </tr>
+                                <tr ng-show="empty">
+                                    <td class="text-center" colspan="9">No Records Found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" style="float: right;"></pagination>
+                    </div>
+                </div>
+                <div class="content filter">
+                    <div class="row filter1">
+                        <label class="label1">From</label><input type="date" ng-model="from1" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('1')">
+                        <label class="label1">To</label><input type="date" ng-model="to1" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('1')">
+                    </div>
+                    <div class="row">
+                        <button class="btn" value="pdf" ng-click="open(false, false, false, false,false,from1, to1,false,'1')">Download PDF</button>
+                        <button class="btn" value="excel" ng-click="open(false, false, false, false,false,from1,to1,true,'')">Download Excel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">User Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="content tableContent">
+                    <div class="table-responsive">
+                        <table class="table" style="max-width: 850px;" id="basic-table1">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">User Name</th>
+                                    <th class="text-center">Cycle</th>
+                                    <th class="text-center">Crop</th>
+                                    <th class="text-center">Capital At Start</th>
+                                    <th class="text-center">Capital At End</th>
+                                    <th class="text-center">Level At Start</th>
+                                    <th class="text-center">Total Yield (in Quintals)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr ng-repeat="capital in capitals | orderBy:orderByField:reverseSort | slice:(currentPage-1)*itemsPerPage:(currentPage)*itemsPerPage | limitTo:itemsPerPage" ng-show="!empty">
+                                    <td scope="row">{{$index+1}}</td>
+                                    <td class="text-center">{{capital.id}}</td>
+                                    <td class="text-center">{{capital.user_id}}</td>
+                                    <td class="text-center">{{capital.cycle}}</td>
+                                    <td class="text-center">{{capital.crop}}</td>
+                                    <td class="text-center">{{capital.cap_at_beg}}</td>
+                                    <td class="text-center">{{capital.cap_at_end}}</td>
+                                    <td class="text-center">{{capital.level_at_beg}}</td>
+                                    <td class="text-center">{{capital.assessment_score}}</td>
+                                </tr>
+                                <tr ng-show="empty">
+                                    <td class="text-center" colspan="9">No Records Found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" style="float: right;"></pagination>
+                    </div>
+                </div>
+                <div class="content filter">
+                    <div class="row filter1">
+                        <label class="label1">From</label><input type="date" ng-model="from1" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('1')">
+                        <label class="label1">To</label><input type="date" ng-model="to1" placeholder="yyyy-MM-dd" class="form-control date" ng-change="dateChange('1')">
+                    </div>
+                    <div class="row">
+                        <button class="btn" value="pdf" ng-click="open(false, false, false, false,false,from1, to1,false,'1')">Download PDF</button>
+                        <button class="btn" value="excel" ng-click="open(false, false, false, false,false,from1,to1,true,'')">Download Excel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+<!--/.wrapper-->
+<div class="footer">
+    <div class="container">
+        <!--   <b class="copyright">&copy;  </b>-->
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="stackedModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-{{name}}">The {{name}} modal!</h3>
+    </div>
+    <div class="modal-body" id="modal-body-{{name}}">
+        Having multiple modals open at once is probably bad UX but it's technically possible.
+    </div>
+    
+</script>
+<!-- <script>
+    $(document).ready(function(){
+    $('#basic-table1').after('<div id="nav"></div>');
+    var rowsShown = 4;
+    var rowsTotal = $('#basic-table1 tbody tr').length;
+    var numPages = rowsTotal/rowsShown;
+    for(i = 0;i < numPages;i++) {
+        var pageNum = i + 1;
+        $('#nav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+    }
+    $('#basic-table1 tbody tr').hide();
+    $('#basic-table1 tbody tr').slice(0, rowsShown).show();
+    $('#nav a:first').addClass('active');
+    $('#nav a').bind('click', function(){
+
+        $('#nav a').removeClass('active');
+        $(this).addClass('active');
+        var currPage = $(this).attr('rel');
+        var startItem = currPage * rowsShown;
+        var endItem = startItem + rowsShown;
+        $('#basic-table1 tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+        css('display','table-row').animate({opacity:1}, 300);
+    });
+});
+</script> -->
+<style>
+    
+</style>

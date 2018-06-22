@@ -1,0 +1,161 @@
+ <div class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                            <i class="icon-reorder shaded"></i></a>
+
+                        <a class="brand" href="index.html"> <img src="./images/Logo.png" alt="" style="height:70px;"></a>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <!--   <ul class="nav nav-icons">
+<li class="active"><a><i class="icon-envelope"></i></a></li>
+<li><a><i class="icon-eye-open"></i></a></li>
+<li><a><i class="icon-bar-chart"></i></a></li>
+</ul>-->
+                            <!--    <form class="navbar-search pull-left input-append" action="#">
+<input type="text" class="span3">
+<button class="btn" type="button">
+<i class="icon-search"></i>
+</button>
+</form>-->
+                            <ul class="nav pull-right">
+                                <!--     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Dropdown
+<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a>Item No. 1</a></li>
+<li><a>Don't Click</a></li>
+<li class="divider"></li>
+<li class="nav-header">Example Header</li>
+<li><a>A Separated link</a></li>
+</ul>
+</li>-->
+                                <!--  <li><a>Support </a></li>-->
+                                <li class="nav-user dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><br>
+                                    <img src="./images/user.png" class="nav-avatar" />
+                                    <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Your Profile</a></li>
+                                        <li><a>Edit Profile</a></li>
+                                        <li><a>Account Settings</a></li>
+                                        <li class="divider"></li>
+                                        <li><a>Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.nav-collapse -->
+                    </div>
+                </div>
+                <!-- /navbar-inner -->
+            </div>
+
+           
+            <div class="wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="span3">
+                            <div class="sidebar">
+                                <ul class="widget widget-menu unstyled">
+                                    <li class="active"><a href="index.html"><i class="menu-icon icon-dashboard"></i>Dashboard
+                                        </a></li>
+                                    <li><a href="activity.html"><i class="menu-icon icon-bullhorn"></i>News Feed </a>
+                                    </li>
+                                    <li><a href="message.html"><i class="menu-icon icon-inbox"></i>Inbox <b class="label green pull-right">
+                                        11</b> </a></li>
+                                    <li><a href="task.html"><i class="menu-icon icon-tasks"></i>Tasks <b class="label orange pull-right">
+                                        19</b> </a></li>
+                                </ul>
+                                <!--/.widget-nav-->
+
+
+                                <ul class="widget widget-menu unstyled">
+                                    <li><a href="ui-button-icon.html"><i class="menu-icon icon-bold"></i> Buttons </a></li>
+                                    <li><a href="ui-typography.html"><i class="menu-icon icon-book"></i>Typography </a></li>
+                                    <li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms </a></li>
+                                    <li><a href="table.html"><i class="menu-icon icon-table"></i>Tables </a></li>
+                                    <li><a href="charts.html"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
+                                </ul>
+                                <!--/.widget-nav-->
+                                <ul class="widget widget-menu unstyled">
+                                    <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon icon-cog">
+                                        </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                        </i>More Pages </a>
+                                        <ul id="togglePages" class="collapse unstyled">
+                                            <li><a href="other-login.html"><i class="icon-inbox"></i>Login </a></li>
+                                            <li><a href="other-user-profile.html"><i class="icon-inbox"></i>Profile </a></li>
+                                            <li><a href="other-user-listing.html"><i class="icon-inbox"></i>All Users </a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="menu-icon icon-signout"></i>Logout </a></li>
+                                </ul>
+                            </div>
+                            <!--/.sidebar-->
+                        </div>
+                        <!--/.span3-->
+                        <div class="span9">
+                            <div class="content">
+
+                                <div class="table-title">
+               <h3 style="text-align: -webkit-center;font-size:25px;">Last Activity Report</h3>
+                                </div>
+            <div>
+             
+            <label>Filter By Days :</label>
+            <select name="" ng-model="searchBy" ng-change="searchByDayOptions()">
+                <option value="">Select Option</option>
+                <option value="lastday">Last day</option>
+                <option value="lastweek">Last Week</option>
+                <option value="lastmonth">Last Month</option>
+                <option value="last3months">Last 3 months</option>
+                <option value="last6months">Last 6 months</option>
+            </select>
+            
+        
+            </div>
+
+
+        <div class="table-responsive" ng-show="selectedCapitals.length>0"> 
+            <table class="table-fill">
+                <thead>
+                    <tr>
+                       <!--  <th>#</th> -->
+                        <th class="text-left"><a ng-click="orderByField1='id'; reverseSort1 = !reverseSort1">Id <span ng-show="orderByField1 == 'id'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='user_id'; reverseSort1 = !reverseSort1">UId <span ng-show="orderByField1 == 'user_id'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='cycle'; reverseSort1 = !reverseSort1">Cycle <span ng-show="orderByField1 == 'cycle'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='crop'; reverseSort1 = !reverseSort1">Crop <span ng-show="orderByField1 == 'crop'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='cap_at_beg'; reverseSort1 = !reverseSort1">Capital At Start <span ng-show="orderByField1 == 'cap_at_beg'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='cap_at_end'; reverseSort1 = !reverseSort1">Capital At End <span ng-show="orderByField1 == 'cap_at_end'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='level_at_beg'; reverseSort1 = !reverseSort1">Level At Start <span ng-show="orderByField1 == 'level_at_beg'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                        <th class="text-left"><a ng-click="orderByField1='assessment_score'; reverseSort1 = !reverseSort1">Total Yield (in Quintals) <span ng-show="orderByField1 == 'assessment_score'"><span ng-show="!reverseSort1">^</span><span ng-show="reverseSort1">v</span></a></th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover">
+                    <tr ng-repeat="capital in selectedCapitals | orderBy:orderByField1:reverseSort1 | slice:(currentPage1-1)*itemsPerPage1:(currentPage1)*itemsPerPage1 | limitTo:itemsPerPage1">
+                        <!-- <th scope="row">{{$index+1}}</th> -->
+                        <td>{{capital.id}}</td>
+                        <td>{{capital.user_id}}</td>
+                        <td>{{capital.cycle}}</td>
+                        <td>{{capital.crop}}</td>
+                        <td>{{capital.cap_at_beg}}</td>
+                        <td>{{capital.cap_at_end}}</td>
+                        <td>{{capital.level_at_beg}}</td>
+                        <td>{{capital.assessment_score}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <pagination ng-show="numPages1>1" total-items="totalItems1" ng-model="currentPage1" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages1" items-per-page="itemsPerPage1" style="float: right;"></pagination>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--/.wrapper-->
+            <div class="footer">
+                <div class="container">
+                    <!--   <b class="copyright">&copy;  </b>-->
+                </div>
+            </div>
